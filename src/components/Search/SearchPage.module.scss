@@ -1,0 +1,1180 @@
+// Map view
+@import '../../styles/globalVariables';
+@import '../../styles/mixins';
+// @import '../../styles/base';
+
+.mapview {
+  &__zindex99{
+    @media (max-width: 768px) {
+      z-index: 99 !important;
+    }
+  }
+  &__container {
+    // z-index: 9;
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 150px);
+    display: grid;
+    // grid-template-columns: 35% 1fr;
+    grid-template-columns: 45% 1fr;
+    // @media screen and (max-width: 1700px) and (min-width: 1440px) {
+    //   grid-template-columns: 40% 1fr;
+    // }
+    // @media screen and (max-width: 1440px) and (min-width: 1280px) {
+    //   grid-template-columns: 45% 1fr;
+    // }
+    // @media screen and (max-width: 1280px) and (min-width: 1180px) {
+    //   grid-template-columns: 50% 1fr;
+    // }
+    @media screen and (min-width: 1600px) {
+      grid-template-columns: 43% 1fr;
+    }
+    @media screen and (min-width: 1800px) {
+      grid-template-columns: 40% 1fr;
+    }
+    @media screen and (max-width: 1440px) and (min-width: 1180px) {
+      grid-template-columns: 53% 1fr;
+    }
+    @media screen and (max-width: 1200px) and (min-width: 1180px) {
+      grid-template-columns: 55% 1fr;
+    }
+
+    @media screen and (max-width: 1180px) {
+      grid-template-columns: 1fr;
+    }
+    @media (max-width: 768px) {
+      z-index: 98;
+      grid-template-columns: 100%;
+    }
+
+    .mobileBottomContainer {
+      width: 100%;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index:9;
+    }
+
+    .swipeUpButton {
+      position: fixed;
+      width: 100%;
+      min-height: 60px;
+      left: 0;
+      bottom: 0;
+      background-color: #fff;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1);
+      z-index: 50;
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        position: relative;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 24px;
+        padding-top: 12px;
+        &::before {
+          position: absolute;
+          content: ' ';
+          top: 0;
+          width: 50px;
+          height: 3px;
+          background-color: #c4c4c4;
+          margin: auto;
+          border-radius: 2px;
+          left: 0;
+          right: 0;
+        }
+      }
+      @media (min-width: 1180px) {
+        display: none;
+      }
+    }
+
+    .viewMapBtn {
+      z-index: 54;
+      margin: 0 auto 20px;
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      bottom: 0;
+      left: calc(50% - 62.5px);
+      @media (min-width: 1180px) {
+        display: none;
+      }
+    }
+
+    .thinFilterMobile {
+      @media (min-width: 1180px) {
+        display: none;
+      }
+    }
+    .backBtnWrapper {
+      @media (max-width: 1180px) {
+        display: none;
+      }
+    }
+
+    .breadcrumbsMobile {
+      @media (min-width: 1180px) {
+        display: none;
+      }
+      & > div {
+        top: 88px;
+        z-index: 99;
+        width: 95%;
+        left: 50%;
+      }
+    }
+  }
+
+  &__sidebar {
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+   
+    @media only screen and (min-width: 1181px) {
+      height: calc(100vh - 150px);
+    }
+    .topHeader {
+      padding: 0 2.5vw;
+      padding-top: 13px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+      @media (max-width: 1180px) {
+        padding: 20px 24px 0;
+      }
+    }
+    .searchSubHeader {
+      display: block;
+      height: auto;
+      @media (min-width: 979px) and (max-width: 1180px) {
+        margin-top: 45px;
+      }
+      @media (max-width: 980px) {
+        &.fixedForMobile {
+          padding: 10px 20px;
+          box-shadow: 0 0 3px rgb(0 0 0 / 30%);
+          background-color: #fff;
+          position: fixed;
+          z-index: 999;
+          left: 0px;
+          top: 0px;
+        }
+      }
+    }
+    .searchContainer {
+      width: 100%;
+      // @media only screen and (max-width: 1439px) {
+      //   margin-bottom: 70px;
+      // }
+    }
+    .searchBox {
+      max-width: unset;
+      margin-bottom: 17px;
+      position: relative;
+      top: 56px;
+      @media screen and ( min-width: 1181px) {
+        top: 0px;
+      }
+      @media (max-width: 1180px) {
+        margin-bottom: 0px;
+        // margin-top: 10px;
+      }
+      @media screen and (max-width: 980px) {
+        border-radius: 8px;
+        &.topFixHeaderMobile {
+          top: 0px;
+        }
+      }
+    }
+    .thinFilter {
+      width: 100%;
+      html[dir='rtl'] & {
+        width: 100%;
+      }
+      // @media (max-width: 1180px) {
+      //   & > div:nth-child(2) {
+      //     & > div:nth-child(1) {
+      //       top: 50px;
+      //       @media (min-width: 978px) {
+      //         top: 90px;
+      //       }
+      //     }
+      //     & > div:nth-child(2) {
+      //       & > :first-child {
+      //         margin-top: 70px;
+      //         @media (min-width: 978px) {
+      //           margin-top: 110px;
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
+    }
+    .breadcrumbsWrapper {
+      & > div {
+        width: 100%;
+        top: 52px;
+        @media (min-width: 768px) and (max-width: 1180px) {
+          top: 60px;
+        }
+      }
+    }
+    @media (max-width: 1180px) {
+      position: fixed;
+      width: 100%;
+      z-index: 51;
+      background-color: #fff;
+      height: 100vh;
+      transition: 0.3s;
+      display: none;
+      bottom: -100%;
+      // animation: slideUp 0.6s ease-in-out;
+      &_optionalListAnimation{
+          animation: slideUp 0.6s ease-in-out;
+      }
+      &.sidebarMobile {
+        display: block;
+        bottom: -6%;
+        top: 0;
+        padding-top: 55px;
+        &.open_app_header {
+          top: 66px;
+        }
+      }
+      &.sidebarMobile2 {
+        display: block;
+        bottom: -6%;
+        top: 0;
+        padding-top: 55px;
+        padding-bottom: 170px;
+        &.open_app_header {
+          top: 66px;
+        }
+      }
+      &.sidebarMobile3 {
+        display: block;
+        bottom: -6%;
+        top: 0;
+        padding-top: 55px;
+        padding-bottom: 100px;
+        &.open_app_header {
+          top: 66px;
+        }
+      }
+    }
+  }
+}
+
+.searchBox {
+  text-transform: capitalize;
+  @media screen and (max-width: 980px) {
+    border-radius: 0px 8px 8px 8px !important;
+    html[dir='rtl'] & {
+      border-radius: 8px 0px 8px 8px !important;
+    }
+    &.topFixHeaderMobile {
+      top: 0px;
+      margin-bottom: 0px;
+      border-radius: 8px !important;
+    }
+  }
+}
+
+.searchSubHeader {
+  display: block;
+  height: auto;
+  @media (min-width: 979px) and (max-width: 1180px) {
+    margin-top: 45px;
+    &.filterSubHeader {
+      margin-top: 0px;
+    }
+  }
+  @media (max-width: 980px) {
+    &.fixedForMobile {
+      padding: 10px 20px;
+      box-shadow: 0 0 3px rgb(0 0 0 / 30%);
+      background-color: #fff;
+      position: fixed;
+      z-index: 999;
+      left: 0px;
+      top: 0px;
+      height: auto;
+    }
+  }
+}
+
+.caretIcon {
+  display: flex;
+  align-items: center;
+  padding-right: 4px;
+  @media (min-width: 1180px) {
+    display: none;
+  }
+}
+.backButton {
+  color: #7d4baa;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 17px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  .backArrowIcon {
+    display: flex;
+    margin-right: 12px;
+  }
+}
+
+.searchContainerMobile {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  z-index: 58;
+  width: 95%;
+  margin: auto;
+  & > .searchBox {
+    background-color: #fff;
+    min-width: 100%;
+  }
+  @media (min-width: 768px) {
+    top: 37px;
+  }
+  @media (min-width: 1180px) {
+    display: none;
+  }
+  .zoneMapSearch {
+    margin-top: 65px;
+    @media (min-width: 979px) {
+      margin-top: 102px;
+    }
+  }
+}
+
+.listview {
+  &__container {
+    display: grid;
+    grid-template-columns: repeat (4, 1fr);
+  }
+}
+
+.searchPageContainer {
+  margin: 0% auto 2%;
+  max-width: 1980px;
+}
+.top13 {
+  @include for-size(phone-only) {
+    top: 130px !important;
+  }
+  @include for-size(tablet-portrait-up) {
+    top: 130px !important;
+  }
+}
+.gridViewWrapper {
+  position: sticky;
+  top: 88px;
+  background: #fff;
+  z-index: 1;
+  padding-top: 1%;
+  @include for-size(phone-only) {
+    top: 65px;
+    padding-top: 5%;
+  }
+  @include for-size(tablet-portrait-up) {
+    top: 65px;
+    padding-top: 5%;
+  }
+}
+
+.searchSubHeader {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 85px;
+  // border-bottom: 1px solid #ebeaed;
+  @media (max-width: 1180px) {
+    border: none;
+    height: 48px;
+    align-items: center;
+  }
+}
+
+.mapContainerDivpopup {
+  position: fixed;
+  bottom: 75px;
+  margin: 0 2vw;
+  text-align: center;
+  content: '';
+  background: #f9f5fe;
+  padding: 8px 16px 8px 8px;
+  align-items: center;
+  box-shadow: 0px 15px 15px rgba(161, 168, 191, 0.35), 0px 2px 2px rgba(0, 0, 0, 0.1);
+  display: none;
+  border-radius: 8px;
+
+  @media screen and (max-width: 480px) {
+    display: flex;
+    width: fill-available;
+    width: -webkit-fill-available;
+
+    label {
+      width: 100;
+      text-align: left;
+    }
+  }
+
+  @media screen and (max-width: 768px) and (min-width: 480px) {
+    display: flex;
+    left: 50%;
+    transform: translate(-50%, 0px);
+    width: fit-content;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0px 10px;
+  }
+
+  img {
+    width: 32px;
+  }
+
+  svg {
+    margin-left: 5px;
+    float: right;
+  }
+
+  .closeButton {
+    margin-left: auto;
+    margin-top: 3px;
+    html[dir='rtl'] & {
+      margin-left: 0px;
+      margin-right: auto;
+    }
+  }
+}
+
+.thinFilter {
+  width: 35%;
+  &.autoLenght {
+    width: auto;
+  }
+  html[dir='rtl'] & {
+    width: 38%;
+    &.autoLenght {
+      width: auto !important;
+    }
+  }
+  @media screen and (max-width: 1499px) {
+    width: 42%;
+    &.autoLenght {
+      width: auto !important;
+    }
+    html[dir='rtl'] & {
+      width: 45%;
+      &.autoLenght {
+        width: auto !important;
+      }
+    }
+  }
+  @media screen and (max-width: 1280px) {
+    width: 45%;
+    &.autoLenght {
+      width: auto !important;
+    }
+    html[dir='rtl'] & {
+      width: 48%;
+      &.autoLenght {
+        width: auto !important;
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 1180px) {
+    width: 0 !important;
+    &.autoLenght {
+      width: auto !important;
+    }
+  }
+  @include for-size(phone-only) {
+    width: 0 !important;
+  }
+}
+
+.searchContainer {
+  width: 45%;
+  position: relative;
+  // html[dir='rtl'] & {
+  //   width: 42%;
+  // }
+  @media screen and (max-width: 1499px) {
+    width: 35%;
+    html[dir='rtl'] & {
+      width: 35%;
+    }
+  }
+  @media screen and (max-width: 1280px) {
+    html[dir='rtl'] & {
+      width: 32%;
+    }
+  }
+  @media only screen and (max-width: 1180px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    html[dir='rtl'] & {
+      width: 100%;
+    }
+  }
+}
+
+.rightSection {
+  text-align: right;
+  width: 20%;
+  @media only screen and (max-width: 1180px) {
+    width: 130px;
+    margin-left: 20px;
+    html[dir='rtl'] & {
+      margin-left: 0px;
+      margin-right: 20px;
+    }
+  }
+  & > button {
+    margin-left: auto;
+  }
+  // @media screen and (max-width: 1280px) {
+  //   width: 20%;
+  // }
+  // @include for-size(tablet-portrait-up) {
+  //   display: none;
+  // }
+  // @include for-size(phone-only) {
+  //   display: none;
+  // }
+}
+
+// seach box class contains the country/city/zone dropdown and breadcrumbs/mobile menu icons
+// this class is the child of searchContainer class
+.top56_searchBox {
+  top: 56px;
+}
+.marginBottom56 {
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 56px;
+  }
+}
+.searchBox {
+  border: 1px solid #cfccd2;
+  padding: 4px 15px;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: #3c3544;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 540px;
+  width: 100%;
+  min-height: 50px;
+  // @include for-size(tablet-portrait-up) {
+  @media (min-width: 768px) and (max-width: 1180px) {
+    // box-shadow: 0px 8px 30px rgba(161, 168, 191, 0.4), 0px 0px 2px rgba(0, 0, 0, 0.2);
+    grid-template-columns: 60% 40%;
+    padding-left: 8px;
+    position: relative;
+    background-color: white;
+    max-width: unset;
+    //margin-bottom: 17px;
+    // top: 56px;
+  }
+  @include for-size(phone-only) {
+    // box-shadow: 0px 8px 30px rgba(161, 168, 191, 0.4), 0px 0px 2px rgba(0, 0, 0, 0.2);
+    grid-template-columns: 60% 40%;
+    padding-left: 8px;
+    position: relative;
+    // top: 56px;
+    background-color: white;
+  }
+
+  &.countrySearchBox {
+    min-width: 310px;
+    display: flex;
+    .ghostDropdownHeader {
+      display: block;
+    }
+    .searchSelectors {
+      max-width: 80%;
+      div {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.custom56top {
+  @media (max-width: 991px) {
+    top: 56px;
+  }
+}
+// search selectors contains the dropdown for country/city/zone
+// this class is the child of searchBox class
+.searchSelectors {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+// city selector contain the dropdown for city/country(for international)
+// zone selector contain the dropdown for zones
+// these class are the child of searchSelectors class
+.citySelector,
+.countrySelector,
+.zoneSelector {
+  // padding: 0 10px;
+  display: flex;
+  width: auto;
+}
+
+.citySelector {
+  @media (max-width: 1024px) {
+    padding-left: 4px;
+  }
+}
+
+.countrySelector svg {
+  margin-inline-start: 8px;
+}
+
+// search icons contains the breadcrumb icon and mobile filter icon
+// this class is the child of searchBox class
+.searchIcons {
+  //width: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: end;
+}
+
+// breadcrumb Icon class contains three dots icon
+// child of searchIcons class
+.breadcrumbIcon {
+  // padding: 1px 0px 0 10px;
+  padding-right: 0.5rem;
+  display: flex;
+  html[dir='rtl'] & {
+    padding: 1px 10px 0 0px;
+  }
+}
+
+// mobile Filter Icon class contains mobile menu icon
+// child of searchIcons class
+.mobileFilterIcon {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-left: 2px solid #dedbe0;
+  padding: 0 16px;
+  @media (min-width: 768px) and (max-width: 1180px) {
+    display: grid;
+    border-left: 2px solid #dedbe0;
+    padding: 0 16px;
+    &.rtl {
+      border-left: 0;
+      border-right: 2px solid #dedbe0;
+    }
+  }
+  @include for-size(phone-only) {
+    display: grid;
+    border-left: 2px solid #dedbe0;
+    padding: 0 12px;
+    &.rtl {
+      border-left: 0;
+      border-right: 2px solid #dedbe0;
+    }
+  }
+}
+
+.switchView {
+  min-width: 125px;
+  background-color: #6f10a2;
+  color: #fff;
+  outline: 0;
+  border-radius: 4px;
+  box-shadow: unset;
+  border-color: transparent;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  .viewIcon {
+    display: flex;
+    margin-right: 8px;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+// --------------------------------RTL STYLE -----------------------------------------------------------
+
+html[dir='rtl'] {
+  .rightSection {
+    & > button {
+      margin-left: unset;
+      margin-right: auto;
+    }
+  }
+  .backButton {
+    .backArrowIcon {
+      margin-left: 12px;
+      margin-right: 0;
+      transform: scale(-1);
+    }
+  }
+
+  .switchView {
+    .viewIcon {
+      margin-left: 8px;
+      margin-right: 0px;
+    }
+  }
+  .caretIcon {
+    transform: scaleX(-1);
+  }
+  .breadcrumbsWrapper {
+    & > div {
+      left: 50%;
+    }
+  }
+  .citySelector {
+    @media (max-width: 1024px) {
+      padding-right: 4px;
+      padding-left: 14px;
+    }
+  }
+}
+
+.searchWidget {
+  flex-basis: 100%;
+  // display: inline-flex;
+  width: 280px;
+  flex-wrap: wrap;
+  // margin-top: 20px;
+  @media screen and ( min-width: 1181px) {
+    display: block;
+  }
+
+  &.mobileSticky {
+    @media (max-width: 991px) {
+      display: none;
+      animation: fadeInAnimation ease 3s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.searchWidgetTabs {
+  // background: rgb(249 245 254 / 90%);
+  display: flex;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-top: 1px #cfccd2 solid;
+  border-left: 1px #cfccd2 solid;
+  // border-right: 1px #cfccd2 solid;
+  position: absolute;
+  background: white;
+  z-index: 10;
+
+  @media screen and (min-width: 1181px) {
+    display: none;
+  }
+
+  input[type='radio'] {
+    opacity: 0;
+    position: absolute;
+    height: 0;
+    width: 0;
+  }
+  input[type='radio']:checked ~ label {
+    color: #6f10a2;
+  }
+
+  .searchWidgetTabsItem {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    padding: 12px 20px;
+    label {
+      color: #96989c;
+      font-size: 22px;
+      font-weight: 500;
+      padding: 0px 10px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+  }
+  .lineinbetween {
+    content: '';
+    background-color: #cfccd2;
+    position: absolute;
+    width: 1px;
+    height: 40px;
+    top: 10px;
+    left: 48%;
+    display: block;
+    @media screen and (max-width: 767px) {
+      left: 50%;
+    }
+    [dir='rtl'] & {
+      right: 49%;
+      @media screen and (max-width: 767px) {
+        right: 50%;
+      }
+    }
+  }
+  .rightline {
+    content: '';
+    background-color: #cfccd2;
+    position: absolute;
+    width: 1px;
+    height: 50px;
+    top: 5px;
+    left: 99.5%;
+    display: block;
+    @media screen and (max-width: 767px) {
+      // left: 50%;
+    }
+    [dir='rtl'] & {
+      // right: 14%;
+      height: 54px;
+      @media screen and (max-width: 767px) {
+        // right: 50%;
+      }
+    }
+  }
+}
+
+.sectiongridlistName {
+  display: block;
+}
+
+.forDesktop {
+  &.stickySubheader {
+    position: sticky;
+    top: 0px;
+    z-index: 90;
+  }
+  &.fixedSubheader {
+    z-index: 101;
+  }
+  justify-content: space-between;
+  @media (max-width: 991px) {
+    display: none;
+  }
+  .innerMainSec {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 24px;
+    background: #ffffff;
+    // box-shadow: 0px 8px 10px rgba(161, 168, 191, 0.25), 0px 1px 2px rgba(0, 0, 0, 0.1);
+    .rightSection {
+      padding-top: 0px;
+    }
+    .customPadding {
+      padding: 9px 8px 9px 8px !important;
+      border-radius: 4px !important;
+    }
+  }
+  & .searchSubHeader {
+    height: auto !important;
+    flex-direction: row-reverse;
+    //justify-content: space-between;
+
+    &.filterSubHeader {
+      flex-direction: row;
+    }
+
+    &.filterSubHeader {
+      flex-direction: row;
+    }
+
+    .thinFilter {
+      html[dir='rtl'] & {
+        width: 55%;
+      }
+    }
+  }
+  & .searchContainer {
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   width: 1px;
+    //   height: 91%;
+    //   top: 2px;
+    //   left: -47px;
+    //   background-color: rgba(74, 76, 79, 0.36);
+    //   [dir='rtl'] & {
+    //     left: auto;
+    //     right: -47px;
+    //   }
+    // }
+    //width: 270px;
+    position: relative;
+    @media (min-width: 1180px) {
+      padding-left: 50px;
+      margin-left: 50px;
+      border-left: 1px solid rgba(74, 76, 79, 0.36);
+      [dir='rtl'] & {
+        margin-left: 0px;
+        margin-right: 50px;
+        padding-left: 0px;
+        padding-right: 50px;
+        border-left: none;
+        border-right: 1px solid rgba(74, 76, 79, 0.36);
+      }
+    }
+    @media (min-width: 992px) {
+      padding-left: 24px;
+      margin-left: 24px;
+      border-left: 1px solid rgba(74, 76, 79, 0.36);
+      [dir='rtl'] & {
+        margin-left: 0px;
+        margin-right: 24px;
+        padding-left: 0px;
+        padding-right: 24px;
+        border-left: none;
+        border-right: 1px solid rgba(74, 76, 79, 0.36);
+      }
+    }
+    & .searchBox {
+      min-height: 40px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      border: 1px solid #b0b2b5;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+  }
+
+  .topHeader {
+    p {
+      // display: none;
+    }
+  }
+
+  .customGridViewHeader {
+    .header {
+      padding: 0 !important;
+    }
+  }
+}
+
+.mapview__container {
+  .mapview__sidebar {
+    box-shadow: none;
+  }
+}
+.mapview__container_block{
+  display: block;
+  .mapview__sidebar {
+    box-shadow: none;
+  }
+}
+
+.forMobile {
+  display: none;
+
+  @media (max-width: 991px) {
+    display: block;
+    padding: 0px 20px;
+    &.inMapView {
+      background-color: transparent;
+    }
+    .searchSubHeader {
+      // margin-bottom: 7px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      h1 {
+        margin-top: 0px !important;
+        font-size: 20px !important;
+        line-height: 32px !important;
+      }
+      .dropdownWrapper {
+        .invisibelDropdownHeader {
+          gap: 5px !important;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    header {
+      h1 {
+        font-size: 14px !important;
+        line-height: 20px !important;
+      }
+    }
+  }
+}
+
+.listViewSec {
+  padding: 0px 24px;
+}
+
+.mobileErrorWrapper{
+  @media only screen and (max-width: 600) {
+    transform: scale(.8);
+  }
+}
+
+.dekstopGridView {
+  padding: 0px 24px 16px;
+  .dekstopGridViewHeader {
+    header {
+      align-items: center;
+      display: flex;
+      padding: 0px;
+    }
+  }
+}
+
+.filter_error{
+  display: flex;
+  @media only screen and (max-width: 1181px) {
+   display: block;
+  }
+}
+
+.filter_sort{
+  display: flex;
+}
+
+.page__title{
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 500;
+  padding-top: 20px;
+  color: $violet;
+  text-overflow: ellipsis;
+}
+
+.propertyTypeIcon {
+  display: flex;
+}
+
+.isOpenAppHeaderTop {
+  top: 66px !important;
+}
+.isDisable {
+  opacity: 0.4;
+  pointer-events: none;
+  transition: all 0.1s ease-in-out;
+}
+.isEnable {
+  opacity: 1;
+  transition: all 0.1s ease-in-out;
+}
+
+.mapview__maparea {
+  @media only screen and (min-width: 1181px) {
+    height: calc(100vh - 150px);
+  }
+  @media only screen and (max-width: 1180px) {
+    height: 90vh;
+  }
+}
+
+.mapview__maparea_full{
+  @media only screen  {
+    height: calc(100vh - 150px);
+  }
+  @media only screen  {
+    height: 90vh;
+  }
+}
+.centered_loader{
+  text-align: center;
+  margin-top: 48px;
+  height:100vh;
+ }
+ .mapOverCardMobile {
+  display: block;
+  position: absolute;
+  margin: auto 25%;
+  bottom: 75px;
+  z-index: 51;
+
+  @include for-size(phone-only) {
+    // position: relative;
+    margin: -16% 6% auto 6%;
+    bottom: 260px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    bottom: 220px;
+  }
+}
+.mapOverCardMobile2 {
+  display: block;
+  position: absolute;
+  margin: auto 25%;
+  bottom: 75px;
+  z-index: 51;
+
+  @include for-size(phone-only) {
+    // position: relative;
+    margin: -16% 6% auto 6%;
+    bottom: 205px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    // margin: -16% 0px 6%;
+    bottom: 260px;
+    left: 50%;
+    margin-left: -11rem;
+
+    html[dir='rtl'] & {
+      left: auto;
+      margin-left: 0px;
+      right: 50%;
+      margin-right: -10rem;
+    }
+  }
+}
