@@ -1,10 +1,10 @@
 ## Project Description
 
-This is a services sample for a real estate website that provides a digital platform where users can browse, search, and access information about available properties for sale or rent. The objective is to streamline property transactions by connecting buyers, sellers, and agents, offering property details, photos, virtual tours, and facilitating inquiries to simplify the property exploration and acquisition process.
+A real estate website that provides a digital platform where users can browse, search, and access information about available properties for sale or rent. The objective is to streamline property transactions by connecting buyers, sellers, and agents, offering property details, photos, virtual tours, and facilitating inquiries to simplify the property exploration and acquisition process.
 
 ## Sample Project Structure
 
-This sample project includes a server layer.
+This sample project includes a server layer and others.
 
 ### Getting Started
 
